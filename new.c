@@ -18,12 +18,12 @@ extern double data2(double x);
 extern double inx(double x);
 extern double iny(double x);
 extern double inz(double x);
-extern void fx1(double *a, int n);
+extern int *fx1(double *a, int n);
 extern double weit(double x1, double x2, double x3, double w1, double w2, double w3);
 extern double weit2(double x);
 extern double weit1(double x);
 extern double weit0(double x);
-extern double seeta(double x);
+extern double seeta(double *x);
 extern double data(double x);
 #define max 1000
 
@@ -32,16 +32,16 @@ void fx(int *a)
 
 return;
 }
-void fx1(double *a,int n)
+int *fx1(double *a,int n)
 {
 	int i;
-
+	double *x = 0;
 	for (i = 0; i < n; i++) {
-		  a[i] =data0(n);
+		  a[i] =seeta(x);
 		  
 	}
 	 
-	
+	return 0;
 }
 double xor(double x, double y)
 {
@@ -132,7 +132,7 @@ double step(double x)
 	double s1 = 0;
 	double s2 = 0;
 
-	if (x >2.3) { s = 1; }
+	if (x >0.9) { s = 1; }
 	else
 		s = 0;
 
@@ -306,33 +306,48 @@ double weit2(double x)
 
 	return x;
 }
-double seeta(double x)
+double seeta(double *x)
 {
-	double w = data(x);
+	int i = 0;
+	int j = 0;
+	int k = 0;
+	double w = 0;
+	double  rnd[100][100] = { 0 };
+	rand();
+	rand();
+	rand();
+	rand();
+	for (i = 0; i < 10; i++) {
+		for ( j = 0; j < 10; j++) { rnd[i][j] = (double)rand() / RAND_MAX;
+		printf("[%7lf]", rnd[i][j]); k++;
+		if (k % 10 == 0)printf("\n");
+		
+		}
+		
+	}
 	
-	while (x >= w) { x = add2(x); }
-	while (x <= w) { x = add(x); }
-
-	return x;
+	return (double)rand() / RAND_MAX;
 }
 double data(double x)
 {
 	double w = 0;
+	double e = 0;
 
+	e=data0(x)-x;
 
-	return x;
+	return e;
 }
 double weit(double x1, double x2, double x3, double w1, double w2, double w3)
 {
 	double w = 0;
 	double e = 0;
-	w = -1 +x1 * w1 + x2 * w2 + x3 * w3;
+	w = -1+(x1 * w1) + (x2 * w2 )+( x3 * w3);
 
 
-	//w=data(w);
+	
 	
 
-	//w = seeta(w) + weit0(w1) * inx(x1) + weit1(w2) * iny(x2) + weit2(w3) * inz(x3);
+	w = -1+ weit0(w1) * inx(x1) + weit1(w2) * iny(x2) + weit2(w3) * inz(x3);
 
 
 	return w;
@@ -344,7 +359,9 @@ double weit(double x1, double x2, double x3, double w1, double w2, double w3)
 }
 
 int main(void) {
-	
+
+	double *p;
+	double rnd0[10][10] = { 0 };
 	double rnd[3] = { 0 };
 	double rnd1[1000] = { 0 };
 	double a1 = 0;
@@ -357,7 +374,7 @@ int main(void) {
 
 
 	fx(&a); printf("a=%d\n", a);
-	fx1(&rnd1[0], 1000); printf("a=%lf\n", rnd1[0]);
+	fx1(&rnd1[0],365); printf("a=%lf\n", rnd1[0]);
 	printf("\n");
 	rand();
 	rand();
@@ -376,9 +393,13 @@ int main(void) {
 	while (x <= 1) { x = add(x); }
 		printf("add =%lf\n", add(x));
 		printf("add2 =%lf\n", add2(x));
-		printf("weit =%lf\n", weit(weit0((double)rand() / RAND_MAX), weit1((double)rand() / RAND_MAX),weit2((double)rand() / RAND_MAX),inx((double)rand()),iny((double)rand()),inz((double)rand())));
+		printf("weit =%lf\n", weit(weit0((double)rand() / RAND_MAX), weit1((double)rand() / RAND_MAX),weit2((double)rand() / RAND_MAX),inx((double)rand() / RAND_MAX),iny((double)rand() / RAND_MAX),inz((double)rand() / RAND_MAX)));
 		printf("weit0 =%lf\n", inx(x));
-
+		printf("seeta =%lf\n", seeta(&x));
+		printf("rnd0[][] =%lf\n", rnd0[3][3]);
+		printf("data =%lf\n", data(x));
+		printf("rnd =%lf\n", (double)rand() / RAND_MAX);
+		
 	int pc;
 	scanf_s("%d", &pc);
 }
