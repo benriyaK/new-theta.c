@@ -26,6 +26,11 @@ extern double weit0(double x);
 extern double seeta(double *x);
 extern double data(double x);
 extern double seeta1(double *x);
+extern double seeta2(double(*x)[10]);
+extern double ran(double x);
+extern int ran1(int x);
+extern int ran0(int x);
+
 #define max 1000
 
 void fx(int *a)
@@ -44,6 +49,75 @@ int *fx1(double *a, int n)
 	}
 
 	return 0;
+}
+
+double ran(double x)
+{
+	int i = 0;
+	int j = 0;
+	int k = 0;
+	double w = 0;
+	double e[100][100] = { 0 };
+
+	srand((unsigned int)time(0));
+	rand();
+	rand();
+	rand();
+	rand();
+	for (i = 0; i < 10; i++) {
+		for (j = 0; j < 10; j++) {
+			e[i][j] = 0.1 + (double)rand() / (RAND_MAX);
+			printf("[%7lf]", e[i][j]); k++;
+			if (k % 10 == 0)printf("\n");
+
+
+		}
+	}
+
+	w = 0.1 + (double)rand() / RAND_MAX;
+	return w;
+}
+
+int ran1(int x)
+{
+	int i = 0;
+	int j = 0;
+	int k = 0;
+	double w = 0;
+	srand((unsigned int)time(0));
+	rand();
+	rand();
+	rand();
+	rand();
+
+
+	w = 1 + (int)rand() *10.0 / (1.0 + RAND_MAX);
+	return w;
+}
+int ran0(int x)
+{
+	int i = 0;
+	int j = 0;
+	int k = 0;
+	double w = 0;
+	int e[100][100];
+	srand((unsigned int)time(0));
+	rand();
+	rand();
+	rand();
+	rand();
+	for (i = 0; i < 10; i++) {
+		for (j = 0; j < 10; j++) {
+			e[i][j] = rand() % 2;
+			printf("[%d]", e[i][j]); k++;
+			if (k % 10 == 0)printf("\n");
+
+
+		}
+	}
+
+	w = rand() % 2;
+	return w;
 }
 double xor(double x, double y)
 {
@@ -367,6 +441,25 @@ double seeta1(double *x)
 
 
 }
+double seeta2(double(*x)[10])
+{
+	int i = 0;
+	int j = 0;
+	int k = 0;
+	double w = 0;
+	srand((unsigned int)time(0));
+	for (i = 0; i < 10; i++) {
+		for (j = 0; j < 10; j++) {
+			x[i][j] = (double)rand() / RAND_MAX;
+			printf("[%7lf]", x[i][j]); k++;
+			if (k % 10 == 0)printf("\n");
+
+
+		}
+
+	}
+	return  0;
+}
 double data(double x)
 {
 	double w = 0;
@@ -397,9 +490,37 @@ double weit(double x1, double x2, double x3, double w1, double w2, double w3)
 
 }
 
+int ari(char(*x)[100], int y)
+{
+	int i = 0;
+	int j = 0;
+	int k = 0;
+	int e[100][100] = { 0 };
+
+
+
+	srand((unsigned int)time(0));
+	for (i = 0; i < 100; i++) {
+		for (j = 0; j < 100; j++) {
+			e[i][j] = 1 + (int)rand() *99.0 / (1.0 + RAND_MAX);
+			if (e[i][j] == 13) { x[i][j] = '*'; }
+			printf("%3d", e[i][j]); k++;
+			if (k % 100 == 0)printf("\n");
+
+
+		}
+
+	}
+	return  0;
+
+}
 int main(void) {
 
-	double *p;
+
+
+	char ar[100][100] = { 0 };
+	char(*pt)[100];
+	double(*p)[10];
 	double rnd0[10][10] = { 0 };
 	double rnd[3] = { 0 };
 	double rnd1[1000] = { 0 };
@@ -408,23 +529,38 @@ int main(void) {
 	double a2 = 0;
 	double a3 = 0;
 	double x = 3;
-	p = rnd1;
+	p = rnd0;
+	pt = ar;
 	int a = 0;
 	int i, j, k = 0;
-	srand((unsigned int)time(0));
+	int m = 0;
+
+
+
+
+
+
+
+
+
+
+
 
 	fx(&a); printf("a=%d\n", a);
 	for (i = 0; i < 1000; i++) {
 		printf("[%d] %8lf", i, rnd2[i]); k++;
 		if (k % 10 == 0)printf("\n");
+
 	}
 	printf("\n");
-	fx1(p, 1); printf("a=%lf\n", rnd1[0]);
+	fx1(rnd1, 1); printf("a=%lf\n", rnd1[0]);
 	printf("\n");
 	seeta1(rnd2); for (i = 0; i < 1000; i++) {
 		printf("[%d] %8lf", i, rnd2[i]); k++;
 		if (k % 10 == 0)printf("\n");
 	}
+	printf("seeta2 %8lf", rnd0[9][9]); printf("\n");
+	seeta2(p); printf("rnd0[9][9] %8lf", rnd0[9][9]);
 	printf("\n");
 	rand();
 	rand();
@@ -446,10 +582,37 @@ int main(void) {
 	printf("weit =%lf\n", weit(weit0((double)rand() / RAND_MAX), weit1((double)rand() / RAND_MAX), weit2((double)rand() / RAND_MAX), inx((double)rand() / RAND_MAX), iny((double)rand() / RAND_MAX), inz((double)rand() / RAND_MAX)));
 	printf("weit0 =%lf\n", inx(x));
 	printf("seeta =%lf\n", seeta(&x));
-	printf("rnd0[][] =%lf\n", &rnd0[3][3]);
+	printf("rnd0[3][3] =%lf\n", &rnd0[3][3]);
 	printf("data =%lf\n", data(x));
 	printf("rnd =%lf\n", (double)rand() / RAND_MAX);
+	for (i = 0; i < 10; i++) {
+		for (j = 0; j < 10; j++) {
+			p[i][j] = 0.1 + (double)rand()*1.0 / (0.1 + RAND_MAX);
+			printf("[%7lf]", p[i][j]); k++;
+			if (k % 10 == 0)printf("\n");
+
+
+		}
+
+	}
+	printf("seeta2 %8lf", rnd0[9][9]);
+	printf("\n");
+	ari(pt, 0);
+	printf("\n");
+	for (i = 0; i < 100; i++) {
+		for (j = 0; j < 100; j++) {
+
+			printf("%c", pt[i][j]); k++;
+			if (k % 100 == 0)printf("\n");
+
+
+		}
+
+	}
+	printf("ran0=%d\n", ran0(1));
+	printf("ran=%lf\n", ran(1));
 
 	int pc;
 	scanf_s("%d", &pc);
 }
+
