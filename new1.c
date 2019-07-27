@@ -529,7 +529,7 @@ ax[i][j]=time++;
 }
  }
 
-return 0;
+return time;
 
 }
 
