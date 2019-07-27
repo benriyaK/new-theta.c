@@ -514,6 +514,26 @@ int ari(char(*x)[100], int y)
 	return  0;
 
 }
+
+
+int hake(int *x,int *y,int *z,int time）{
+int ax[10][10];
+int i,j,k,l=0;
+
+for(i=0; i<10; i++;){
+ for(j=0; j<10;　j++;){
+
+
+ax[i][j]=time++;
+
+}
+ }
+
+return 0;
+
+}
+
+
 int main(void) {
 
 
