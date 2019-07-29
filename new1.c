@@ -514,7 +514,81 @@ int ari(char(*x)[100], int y)
 	return  0;
 
 }
+char memo(char *x, int y)
+{
+	int i = 0;
+	int j = 0;
+	int k = 0;
+	int ret = 0;
+	char *p;
+	char buf[1024];
+	char name[] = { "memox.txt" };
+	double(*pp)[100];
+	double w = 0;
+	double e[100][100];
+	pp = e;
 
+	FILE *fp;
+	errno_t err;
+	err = fopen_s(&fp, name, "a");
+
+	if (err != 0) {
+		exit(1); printf("%s オープンに失敗しました。\n", name);
+
+
+
+	}
+	
+	
+	for (i = 0; i < 1024; i++) {
+
+		srand((unsigned int)time(0));
+		buf[i] = x[i] = ran1(1);
+
+
+		printf("%d", buf[i]); k++;
+		if (k % 100 == 0)printf("\n");
+
+		fscanf_s(fp, "%d", &buf[i], 1024);
+		fprintf_s(fp, "%d", buf[i], 1024);
+
+	}
+	
+	
+	
+
+	
+	
+	
+	
+	fclose(fp);
+	
+
+	return 0;
+}
+int enkaku(int(*x)[8], int(*y)[100],int z)
+{
+	int i = 0;
+	int j = 0;
+	int k = 0;
+	int *p=0;
+	int e[100][100] = { 0 };
+	int f[] = { 0 };
+
+	for (i = 0; i < 8; i++) {
+		for (j = 0; j < 8; j++) {
+			x[i][j];
+			if (x[i][j] > 0) {
+				e[i][j] = x[i][j]; f[j] = e[i][j]; x[i][j] = -1;
+			}
+
+		}
+
+	}
+
+	return 0;
+
+}
 
 int hake(int *x,int *y,int *z,int time）{
 int ax[10][10];
@@ -537,24 +611,33 @@ return time;
 int main(void) {
 
 
-
+　　　　　
+	char *d;
+	char art[2046] = { 0 };
 	char ar[100][100] = { 0 };
 	char(*pt)[100];
-	double(*p)[10];
+	int e[100][100] = { 0 };
+	int (*pc)[100];
+	int ax[8][8] = { 0 };
+	double (*p)[10];
+	double(*pp)[100];
 	double rnd0[10][10] = { 0 };
 	double rnd[3] = { 0 };
 	double rnd1[1000] = { 0 };
 	double rnd2[1000] = { 0 };
+	double rnd3[100][100] = { 0 };
 	double a1 = 0;
 	double a2 = 0;
 	double a3 = 0;
 	double x = 3;
 	p = rnd0;
+	pp = rnd3;
 	pt = ar;
+	pc = e;
+	d = art;
 	int a = 0;
 	int i, j, k = 0;
 	int m = 0;
-
 
 
 
