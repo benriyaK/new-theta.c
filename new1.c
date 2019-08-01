@@ -590,15 +590,17 @@ int enkaku(int(*x)[8], int(*y)[100],int z)
 
 }
 
-int hake(int *x,int *y,int *z,int time）{
-int ax[10][10];
+int hake(int *(x)[3],*char str,int time）{
+int ax[8][3];
 int i,j,k,l=0;
 
-for(i=0; i<10; i++;){
- for(j=0; j<10;　j++;){
+for(i=0; i<8; i++;){
+ for(j=0; j<3;　j++;){
 
 
-ax[i][j]=time++;
+ax[i][j]=x[i][j];
+
+
 
 }
  }
