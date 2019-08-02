@@ -605,7 +605,7 @@ ax[i][j]=x[i][j];
 }
  }
 
-return time;
+return xor(time,1);
 
 }
 
