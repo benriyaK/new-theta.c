@@ -3,6 +3,7 @@
 #include <math.h>
 #include <time.h>
 #include <stdlib.h>
+
 extern double xor(double x, double y);
 extern double not(double x, double y);
 extern double or (double x, double y);
@@ -32,6 +33,10 @@ extern int ran1(int x);
 extern int ran0(int x);
 
 #define max 1000
+
+
+
+
 
 void fx(int *a)
 {
@@ -64,17 +69,9 @@ double ran(double x)
 	rand();
 	rand();
 	rand();
-	for (i = 0; i < 10; i++) {
-		for (j = 0; j < 10; j++) {
-			e[i][j] = 0.1 + (double)rand() / (RAND_MAX);
-			printf("[%7lf]", e[i][j]); k++;
-			if (k % 10 == 0)printf("\n");
 
 
-		}
-	}
-
-	w = 0.1 + (double)rand() / RAND_MAX;
+	w = 0.1 + (double)rand() / RAND_MAX;//0.1～1.09 １回のみ　連続出力不可
 	return w;
 }
 
@@ -91,7 +88,7 @@ int ran1(int x)
 	rand();
 
 
-	w = 1 + (int)rand() *10.0 / (1.0 + RAND_MAX);
+	w = 1 + (int)rand() *10.0 / (1.0 + RAND_MAX);//1～10　１回のみ　連続出力不可
 	return w;
 }
 int ran0(int x)
@@ -106,17 +103,9 @@ int ran0(int x)
 	rand();
 	rand();
 	rand();
-	for (i = 0; i < 10; i++) {
-		for (j = 0; j < 10; j++) {
-			e[i][j] = rand() % 2;
-			printf("[%d]", e[i][j]); k++;
-			if (k % 10 == 0)printf("\n");
 
 
-		}
-	}
-
-	w = rand() % 2;
+	w = rand() % 2;//0,1　１回のみ　連続出力不可
 	return w;
 }
 double xor(double x, double y)
@@ -489,31 +478,6 @@ double weit(double x1, double x2, double x3, double w1, double w2, double w3)
 
 
 }
-
-int ari(char(*x)[100], int y)
-{
-	int i = 0;
-	int j = 0;
-	int k = 0;
-	int e[100][100] = { 0 };
-
-
-
-	srand((unsigned int)time(0));
-	for (i = 0; i < 100; i++) {
-		for (j = 0; j < 100; j++) {
-			e[i][j] = 1 + (int)rand() *99.0 / (1.0 + RAND_MAX);
-			if (e[i][j] == 13) { x[i][j] = '*'; }
-			printf("%3d", e[i][j]); k++;
-			if (k % 100 == 0)printf("\n");
-
-
-		}
-
-	}
-	return  0;
-
-}
 char memo(char *x, int y)
 {
 	int i = 0;
@@ -538,11 +502,11 @@ char memo(char *x, int y)
 
 
 	}
-	
-	
+
+
 	for (i = 0; i < 1024; i++) {
 
-		srand((unsigned int)time(0));
+
 		buf[i] = x[i] = ran1(1);
 
 
@@ -553,26 +517,97 @@ char memo(char *x, int y)
 		fprintf_s(fp, "%d", buf[i], 1024);
 
 	}
-	
-	
-	
 
-	
-	
-	
-	
+
+
+
+
+
+
+
 	fclose(fp);
-	
+
 
 	return 0;
 }
-int enkaku(int(*x)[8], int(*y)[100],int z)
+int ari(char(*x)[100], int y)
 {
 	int i = 0;
 	int j = 0;
 	int k = 0;
-	int *p=0;
 	int e[100][100] = { 0 };
+	int a[1000] = { 0 };
+	int b[1000] = { 0 };
+	int data[4][8] = { {1,0,1,1,0,1,0}, {0,1,1,1,1,0,0,0}, {0,1,1,1,0,1,1,0} ,{0,0,0,1,1,1,0,1 } };
+	int(*p)[8];
+	srand((unsigned int)time(0));
+	for (i = 0; i < 100; i++) {
+		for (j = 0; j < 100; j++) {
+			e[i][j] = 1 + (int)rand() *99.0 / (1.0 + RAND_MAX);
+			if (e[i][j] == 13) { x[i][j] = '*'; }
+			printf("%3d", e[i][j]); k++;
+			if (k % 100 == 0)printf("\n");
+
+
+		}
+
+	}
+
+
+	p = data;
+
+
+	for (j = 0; j < 100; j++) {
+		for (i = 1; i < 100; i++) {
+
+			a[i] = rand() % 2;
+
+
+
+
+			if (a[i - 1] && a[i] && a[i + 1] == 1 && 1 && 1) { b[i] = 0; }
+
+
+			else if (a[i - 1] && a[i] && a[i + 1] == 1 && 1 && 0) { b[i] = 0; }
+			else if (a[i - 1] && a[i] && a[i + 1] == 1 && 0 && 1) { b[i] = 0; }
+			else if (a[i - 1] && a[i] && a[i + 1] == 1 && 0 && 0) { b[i] = 1; }
+			else if (a[i - 1] && a[i] && a[i + 1] == 0 && 1 && 1) { b[i] = 1; }
+			else if (a[i - 1] && a[i] && a[i + 1] == 0 && 1 && 0) { b[i] = 1; }
+			else if (a[i - 1] && a[i] && a[i + 1] == 0 && 0 && 1) { b[i] = 1; }
+			else if (a[i - 1] && a[i] && a[i + 1] == 0 && 0 && 0) { b[i] = 0; }
+			//else { b[i] = 0; }
+
+			if (a[100] > -1) {
+				a[0] = a[100];
+			}
+			else if (a[1] > -1) {
+				a[101] = a[1];
+			}
+
+
+
+			if (b[i] == 1) { b[i] = '@'; }
+			else { b[i] = ' '; }
+			printf("%c", b[i]); k++;
+			if (k % 100 == 0)printf("\n");
+
+
+
+		}
+	}
+	return  0;
+
+}
+
+int enkaku(int(*x)[8], int(*y)[100], int z)
+{
+	int i = 0;
+	int j = 0;
+	int k = 0;
+	int *p = 0;
+	int e[100][100] = { 0 };
+	char a[1000];
+	char b[1000];
 	int f[] = { 0 };
 
 	for (i = 0; i < 8; i++) {
@@ -586,42 +621,26 @@ int enkaku(int(*x)[8], int(*y)[100],int z)
 
 	}
 
+
+
+
+
+
+
 	return 0;
 
 }
-
-int hake(int *(x)[3],*char str,int time）{
-int ax[8][3];
-int i,j,k,l=0;
-
-for(i=0; i<8; i++;){
- for(j=0; j<3;　j++;){
-
-
-ax[i][j]=x[i][j];
-
-
-
-}
- }
-
-return xor(time,1);
-
-}
-
-
 int main(void) {
 
 
-　　　　　
 	char *d;
 	char art[2046] = { 0 };
 	char ar[100][100] = { 0 };
 	char(*pt)[100];
 	int e[100][100] = { 0 };
-	int (*pc)[100];
+	int(*pc)[100];
 	int ax[8][8] = { 0 };
-	double (*p)[10];
+	double(*p)[10];
 	double(*pp)[100];
 	double rnd0[10][10] = { 0 };
 	double rnd[3] = { 0 };
@@ -652,11 +671,7 @@ int main(void) {
 
 
 	fx(&a); printf("a=%d\n", a);
-	for (i = 0; i < 1000; i++) {
-		printf("[%d] %8lf", i, rnd2[i]); k++;
-		if (k % 10 == 0)printf("\n");
 
-	}
 	printf("\n");
 	fx1(rnd1, 1); printf("a=%lf\n", rnd1[0]);
 	printf("\n");
@@ -667,6 +682,7 @@ int main(void) {
 	printf("seeta2 %8lf", rnd0[9][9]); printf("\n");
 	seeta2(p); printf("rnd0[9][9] %8lf", rnd0[9][9]);
 	printf("\n");
+	srand((unsigned int)time(0));
 	rand();
 	rand();
 	rand();
@@ -700,9 +716,14 @@ int main(void) {
 		}
 
 	}
-	printf("seeta2 %8lf", rnd0[9][9]);
+	printf("seeta2= %8lf", rnd0[9][9]);
 	printf("\n");
+
+
+
+
 	ari(pt, 0);
+
 	printf("\n");
 	for (i = 0; i < 100; i++) {
 		for (j = 0; j < 100; j++) {
@@ -714,10 +735,30 @@ int main(void) {
 		}
 
 	}
-	printf("ran0=%d\n", ran0(1));
+	printf("\n");
+
 	printf("ran=%lf\n", ran(1));
+	printf("ran1=%d\n", ran1(1));
 
-	int pc;
-	scanf_s("%d", &pc);
+	memo(d, 1);
+	printf("\n");
+	k = 0;
+	int h = 0;
+	for (i = 0; i < 8; i++) {
+		for (j = 0; j < 8; j++) {
+
+			ax[i][j] = rand() % 2;
+			printf("axrnd=%d ", ax[i][j]); k++;
+			if (k % 8 == 0)printf("\n");
+			enkaku(ax, e, 1);
+			printf("ax=%d ", ax[i][j]); h++;
+			if (h % 8 == 0)printf("\n");
+		}
+
+	}
+	printf("\n");
+
+
+	int pd;
+	scanf_s("%d", &pd);
 }
-
