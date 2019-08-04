@@ -630,9 +630,86 @@ int enkaku(int(*x)[8], int(*y)[100], int z)
 	return 0;
 
 }
+
+int hake(int *(x)[3], *char str, int time）{
+
+
+
+int ax[8][3];
+
+
+
+int i,j,k,l = 0;
+
+
+
+
+
+
+
+for (i = 0; i < 8; i++;) {
+
+
+
+ for (j = 0; j < 3; j++;) {
+
+
+
+
+
+
+
+
+
+
+
+ax[i][j] = x[i][j];
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+}
+
+
+
+ }
+
+
+
+
+
+
+
+return xor (time,1);
+
+
+
+	return 0;
+
+
+
+
+
+
+
+	}
+
+
+
 int main(void) {
 
-
+		int *(x)[3];
 	char *d;
 	char art[2046] = { 0 };
 	char ar[100][100] = { 0 };
